@@ -19,11 +19,11 @@ class FeedbackServiceImplTest {
 
     @Mock
     FeedbackRepository feedbackRepository;
-    ComplaintRepository complaintRepository;
+
 
     @InjectMocks
     private FeedbackServiceImpl feedbackService;
-    private ComplaintService complaintService;
+    
     private Feedback feedback;
     @BeforeEach
     void setUp() {
@@ -44,5 +44,10 @@ class FeedbackServiceImplTest {
     void getAllByShipmentId() {
         when(feedbackRepository.findAllByShipmentIdAndDeletedDateIsNull(11)).thenReturn(Arrays.asList(feedback));
         assertNotNull(feedbackService.getAllByShipmentId(11));
+    }
+    @Test
+    void getById() {
+        when(feedbackRepository.findByIdAndDeletedDateIsNull(11)).thenReturn(java.util.Optional.of(feedback));
+        assertNotNull(feedbackService.getById(11));
     }
 }
