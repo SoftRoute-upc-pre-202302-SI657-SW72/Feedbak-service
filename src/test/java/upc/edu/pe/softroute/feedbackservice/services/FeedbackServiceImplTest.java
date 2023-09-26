@@ -40,4 +40,9 @@ class FeedbackServiceImplTest {
         when(feedbackRepository.findAllByDeletedDateIsNull()).thenReturn(Arrays.asList(feedback));
         assertNotNull(feedbackService.getAll());
     }
+    @Test
+    void getAllByShipmentId() {
+        when(feedbackRepository.findAllByShipmentIdAndDeletedDateIsNull(11)).thenReturn(Arrays.asList(feedback));
+        assertNotNull(feedbackService.getAllByShipmentId(11));
+    }
 }
